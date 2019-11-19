@@ -8,6 +8,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Coore version: 0.7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Author:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -35,52 +39,11 @@
         <source>All information is supplied without guarantee.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Coore version: 0.7</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CoverPage</name>
     <message>
-        <source>Coore</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FavoritePage</name>
-    <message>
-        <source>Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Removing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>FoodPage</name>
-    <message>
-        <source>Coop Restaurant </source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>LocationPage</name>
-    <message>
-        <source>No Menus</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>no connection or no menu available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add to Favorites</source>
+        <source>My Cover</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

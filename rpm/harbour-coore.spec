@@ -8,20 +8,15 @@ Name:       harbour-coore
 # >> macros
 # << macros
 
-%{!?qtc_qmake:%define qtc_qmake %qmake}
-%{!?qtc_qmake5:%define qtc_qmake5 %qmake5}
-%{!?qtc_make:%define qtc_make make}
-%{?qtc_builddir:%define _builddir %qtc_builddir}
-Summary:    Show Coop Restaurant Menues
-Version:    0.6
+Summary:    My Sailfish OS Application
+Version:    0.7
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://bauid.ch/
+URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-coore.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
-Requires:   pyotherside-qml-plugin-python3-qt5
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -29,7 +24,7 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-Short description of my SailfishOS Application
+Short description of my Sailfish OS Application
 
 
 %prep
@@ -42,9 +37,9 @@ Short description of my SailfishOS Application
 # >> build pre
 # << build pre
 
-%qtc_qmake5 
+%qmake5 
 
-%qtc_make %{?_smp_mflags}
+make %{?_smp_mflags}
 
 # >> build post
 # << build post

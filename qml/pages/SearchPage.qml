@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import io.thp.pyotherside 1.3
 
 Page {
     id: searchPage
@@ -304,22 +303,6 @@ Page {
                     append({ "text": filteredCountries[index]})
                 }
             }
-        }
-    }
-    Python {
-        id: python
-
-        Component.onCompleted: {
-            addImportPath(Qt.resolvedUrl('.'));
-
-            setHandler('setLocationID', function(newvalue) {
-                searchPage.locationID = newvalue;
-            });
-            importModule('getdata', function () {});
-        }
-
-        onError: {
-            console.log('python error: ' + traceback);
         }
     }
 }

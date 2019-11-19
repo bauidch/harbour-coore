@@ -102,9 +102,3 @@ Page {
 }
    VerticalScrollDecorator { flickable: pageFlickable }
 }
-
-
-
-
-
-

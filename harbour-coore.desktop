@@ -3,11 +3,10 @@ Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=harbour-coore
 Exec=harbour-coore
-Name=Coore
+Name=harbour-coore
 # translation example:
 # your app name in German locale (de)
 #
 # Remember to comment out the following line, if you do not want to use
 # a different app name in German locale (de).
-Name[de]=Coore
-
+Name[de]=harbour-coore

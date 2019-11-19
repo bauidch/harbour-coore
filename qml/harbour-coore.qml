@@ -6,12 +6,5 @@ ApplicationWindow
 {
     initialPage: Component { SearchPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
-    allowedOrientations: Orientation.All
-    _defaultPageOrientations: Orientation.All
-
-    FavoritesBank {
-        id: favoritesBank
-    }
+    allowedOrientations: defaultAllowedOrientations
 }
-
-
