@@ -1,5 +1,6 @@
-# DEPRICATED harbour-coore
+# WIP: harbour-coore
 
 An unoffical Coop Restaurant meal viewer for SailfishOS
 
-New app is in planing
+### Restaurant Data
+https://github.com/jeremystucki/coop
