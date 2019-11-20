@@ -43,8 +43,45 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <source>My Cover</source>
-        <translation>Mein Cover</translation>
+        <source>Coore</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FavoritePage</name>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Removing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LocationPage</name>
+    <message>
+        <source>Add to Favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No Menus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no connection or no menu available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MenuPage</name>
+    <message>
+        <source>Coop Restaurant </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -59,6 +96,28 @@
     </message>
     <message>
         <source>Favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchRestaurantPage</name>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TestPage</name>
+    <message>
+        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -21,6 +21,7 @@ DISTFILES += qml/harbour-coore.qml \
     qml/cover/CoverPage.qml \
     qml/pages/AboutPage.qml \
     qml/pages/SearchPage.qml \
+    qml/pages/TestPage.qml \
     rpm/harbour-coore.changes.in \
     rpm/harbour-coore.changes.run.in \
     rpm/harbour-coore.spec \

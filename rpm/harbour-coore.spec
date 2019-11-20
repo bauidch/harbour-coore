@@ -8,7 +8,7 @@ Name:       harbour-coore
 # >> macros
 # << macros
 
-Summary:    My Sailfish OS Application
+Summary:    Coop Restaurant viewer
 Version:    0.7
 Release:    1
 Group:      Qt/Qt
@@ -24,7 +24,7 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-Short description of my Sailfish OS Application
+Unofficial Coop Restaurant viewer
 
 
 %prep
