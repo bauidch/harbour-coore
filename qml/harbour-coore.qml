@@ -7,4 +7,8 @@ ApplicationWindow
     initialPage: Component { SearchRestaurantPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
+
+    FavoritesBank {
+        id: favoritesBank
+    }
 }

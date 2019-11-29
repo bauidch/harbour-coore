@@ -1,7 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import io.thp.pyotherside 1.3
-
+import "../js/locations.js" as Locations
 
 Page {
     id: oneFood
@@ -11,15 +10,6 @@ Page {
     property double foodPrice
     property string locationID
 
-    onStatusChanged: {
-      if (oneFood.status == PageStatus.Active) {
-        oneFood.onlyFood(oneFood.foodTitle, oneFood.foodPrice, oneFood.locationID);
-      }
-    }
-
-    function onlyFood (food, price, location) {
-        python.call("getdata.oneFood",[food, price, location], {})
-      }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -43,7 +33,7 @@ Page {
                 Label {
                     x: Theme.paddingLarge
                     id: mainLabel
-                    //text: qsTr("Menu")
+                    text: oneFood.foodTitle
                     wrapMode: Text.Wrap
                     color: Theme.secondaryHighlightColor
                     font.pixelSize: Theme.fontSizeExtraLarge
@@ -51,23 +41,13 @@ Page {
                 Label {
                     x: Theme.paddingLarge
                     id: priceLabel
-                    //text: qsTr("Price")
+                    text: oneFood.foodPrice
                     wrapMode: Text.Wrap
                     color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeExtraLarge
                 }
             }
-            ViewPlaceholder {
-                enabled: priceLabel.text == ""
 
-                BusyIndicator {
-                    running: true
-                    size: BusyIndicatorSize.Large
-                    anchors {
-                         horizontalCenter: parent.horizontalCenter
-                    }
-               }
-            }
             Label {
                 x: Theme.paddingLarge
                 id: menuLabel
@@ -76,36 +56,14 @@ Page {
                 font.pixelSize: Theme.fontSizeLarge
             }
             Label {
-                   text: qsTr("Coop Restaurant ") + oneFood.locationID//oneFood.locationTitle
+                   text: qsTr("Coop Restaurant ") + oneFood.locationTitle
                    x: Theme.paddingLarge
             }
 
 
         }
-
-        Python {
-            id: python
-
-            Component.onCompleted: {
-                addImportPath(Qt.resolvedUrl('.'));
-
-                setHandler('oneFood-title', function(newvalue) {
-                    mainLabel.text = newvalue;
-                });
-                setHandler('oneFood-price', function(price) {
-                    priceLabel.text = price;
-                });
-                setHandler('oneFood-menu', function(menu) {
-                    menuLabel.text = menu;
-                });
-
-                importModule('getdata', function () {});
-            }
-
-            onError: {
-                console.log('python error: ' + traceback);
-            }
-
-        }
+    }
+    Component.onCompleted: {
+        menuLabel.text = Locations.get_one_menu(oneFood.locationID, oneFood.foodTitle)
     }
 }

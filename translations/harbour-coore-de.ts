@@ -85,21 +85,6 @@
     </message>
 </context>
 <context>
-    <name>SearchPage</name>
-    <message>
-        <source>Location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>SearchRestaurantPage</name>
     <message>
         <source>Location</source>
@@ -111,13 +96,6 @@
     </message>
     <message>
         <source>Favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>TestPage</name>
-    <message>
-        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

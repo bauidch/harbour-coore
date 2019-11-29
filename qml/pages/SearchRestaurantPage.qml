@@ -66,7 +66,7 @@ Page {
             delegate: BackgroundItem {
                 id: backgroundItem
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl('LocationPage.qml'), {locationTitle: model.text, locationID: searchRestPage.locationID})
+                    pageStack.push(Qt.resolvedUrl('LocationPage.qml'), {locationTitle: model.name, locationID: model.id})
                 }
 
                 ListView.onAdd: AddAnimation {
@@ -82,13 +82,13 @@ Page {
                     color: searchString.length > 0 ? (highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor)
                                                    : (highlighted ? Theme.highlightColor : Theme.primaryColor)
                     textFormat: Text.StyledText
-                    text: Theme.highlightText(model.text, searchString, Theme.highlightColor)
+                    text: Theme.highlightText(model.name, searchString, Theme.highlightColor)
                 }
             }
 
             VerticalScrollDecorator {}
 
-            Component.onCompleted: {
+            Component.onCompleted: {             
                 if (keepSearchFieldFocus) {
                     searchField.forceActiveFocus()
                 }
@@ -100,18 +100,23 @@ Page {
     ListModel {
         id: listModel
 
-        property variant locations: Locations.getAllLocation()
+        property variant locations: Locations.get_all_locations()
+
 
         function update() {
-            var filteredCountries = locations.filter(function (location) { return location.toLowerCase().indexOf(searchString) !== -1 })
+
+            var filteredCountries = locations.filter(function (location) {
+                var locationname = location.name
+                return locationname.toLowerCase().indexOf(searchString) !== -1
+            })
             while (count > filteredCountries.length) {
                 remove(filteredCountries.length)
             }
             for (var index = 0; index < filteredCountries.length; index++) {
                 if (index < count) {
-                    setProperty(index, "text", filteredCountries[index])
+                    setProperty(index, "name", filteredCountries[index].name)
                 } else {
-                    append({ "text": filteredCountries[index]})
+                    append({ "name": filteredCountries[index].name, "id": filteredCountries[index].id})
                 }
             }
         }
