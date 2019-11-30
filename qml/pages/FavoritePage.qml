@@ -15,17 +15,16 @@ Page {
             menu: contextMenu
             ListView.onRemove: animateRemoval()
             function deleteItem() {
-                console.log("Deleting (" + index +") " + location)
-                favoritesBank.deleteItem(index, location);
+                favoritesBank.deleteItem(index, model.name);
             }
 
             onClicked: {
-                pageStack.push(Qt.resolvedUrl('LocationPage.qml'), {locationTitle: location})
+                pageStack.push(Qt.resolvedUrl('LocationPage.qml'), {locationTitle: model.name, locationID: model.id})
             }
 
             Label {
                 id: typeLabel
-                text: location
+                text: model.name
                 anchors.verticalCenter: parent.verticalCenter
                 color: delegateItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 x: Theme.paddingLarge

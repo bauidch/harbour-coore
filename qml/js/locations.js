@@ -26,7 +26,7 @@ function get_all_locations() {
     try {
         var locations = JSON.parse(locationsRAW.responseText);
     } catch (e) {
-        console.log("error: failed to parse week overview json");
+        console.log("error: failed to parse json");
     }
     if (locationsRAW.status >= 200 && locationsRAW.status < 400 && locations.results.length > 0) {
 
@@ -42,6 +42,20 @@ function get_all_locations() {
     }
 }
 
+function get_one_location(location_id) {
+    var locationsRAW = httpGet("https://themachine.jeremystucki.com/coop/api/v2/locations/" + location_id)
+
+    try {
+        var location = JSON.parse(locationsRAW.responseText);
+    } catch (e) {
+        console.log("error: failed to parse json");
+    }
+    var ret = [];
+    ret.push({"name":location.name, "id":location.id, "zip":location.address.zip, "city":location.address.city});
+    return ret;
+
+}
+
 function get_all_menus(location_id) {
     var menusRAW = httpGet("https://themachine.jeremystucki.com/coop/api/v2/locations/" + location_id + "/menus/today")
     try {
@@ -53,7 +67,6 @@ function get_all_menus(location_id) {
         var ret = [];
         for (var i = 0; i < menus.results.length; i++) {
             ret.push({"title":menus.results[i].title, "price":menus.results[i].price});
-
         }
         return ret;
     } else {
@@ -67,16 +80,16 @@ function get_one_menu(location_id, menu) {
     try {
         var menus = JSON.parse(menusRAW.responseText);
     } catch (e) {
-        console.log("error: failed to parse week overview json");
+        console.log("error: failed to parse json");
     }
     if (menusRAW.status >= 200 && menusRAW.status < 400) {
         var ret = [];
         for (var i = 0; i < menus.results.length; i++) {
             if(menus.results[i].title === menu) {
-               return menus.results[i];
+                var meal = menus.results[i].menu.join("\n");
+                return meal
             }
         }
-
     } else {
         console.log('error or no menu')
     }

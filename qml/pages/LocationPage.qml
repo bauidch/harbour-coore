@@ -21,7 +21,7 @@ Page {
              PullDownMenu {
                  MenuItem {
                      text: qsTr("Add to Favorites")
-                     onClicked: favoritesBank.addItem(oneLocation.locationTitle)
+                     onClicked: favoritesBank.addItem(oneLocation.locationTitle, oneLocation.locationID)
                  }
              }
 
@@ -36,6 +36,7 @@ Page {
                     pageStack.push(Qt.resolvedUrl('MenuPage.qml'), {foodTitle: model.title, locationTitle: oneLocation.locationTitle, foodPrice: model.price, locationID: oneLocation.locationID})
                 }
 
+
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
                     id: menuLabel
@@ -44,6 +45,7 @@ Page {
                     font.pixelSize: Theme.fontSizeLarge
                     x: Theme.paddingLarge
                 }
+
 
               }
              ViewPlaceholder {

@@ -9,7 +9,7 @@ Page {
     property string locationTitle
     property double foodPrice
     property string locationID
-
+    property variant locationInfos
 
     SilicaFlickable {
         anchors.fill: parent
@@ -23,6 +23,13 @@ Page {
             spacing: Theme.paddingLarge
             PageHeader {
                 title: oneFood.locationTitle
+            }
+            Label {
+                x: Theme.paddingLarge
+                id: locationAdress
+                wrapMode: Text.Wrap
+                color: Theme.secondaryHighlightColor
+                font.pixelSize: Theme.fontSizeSmall
             }
 
             Row {
@@ -48,22 +55,29 @@ Page {
                 }
             }
 
-            Label {
-                x: Theme.paddingLarge
-                id: menuLabel
-                //text: qsTr("Food")
-                color: Theme.secondaryHighlightColor
-                font.pixelSize: Theme.fontSizeLarge
-            }
+            Repeater {
+                model: [
+                    Locations.get_one_menu(oneFood.locationID, oneFood.foodTitle)
+                ]
+                    Label {
+                        text: modelData
+                        color: Theme.primaryColor
+                        font.pixelSize: Theme.fontSizeMedium
+                        wrapMode: Text.Wrap
+                        width: parent.width
+                        x: Theme.paddingLarge
+                    }
+           }
             Label {
                    text: qsTr("Coop Restaurant ") + oneFood.locationTitle
+                   color: Theme.secondaryHighlightColor
                    x: Theme.paddingLarge
             }
-
 
         }
     }
     Component.onCompleted: {
-        menuLabel.text = Locations.get_one_menu(oneFood.locationID, oneFood.foodTitle)
+        oneFood.locationInfos =  Locations.get_one_location(oneFood.locationID)
+        locationAdress.text = oneFood.locationInfos[0].zip +" "+ oneFood.locationInfos[0].city
     }
 }

@@ -67,6 +67,7 @@ Page {
                 id: backgroundItem
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl('LocationPage.qml'), {locationTitle: model.name, locationID: model.id})
+                    console.log(model.id +" - "+ model.name)
                 }
 
                 ListView.onAdd: AddAnimation {

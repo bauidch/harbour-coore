@@ -3,39 +3,37 @@ import QtQuick.LocalStorage 2.0
 
 ListModel {
      id: model
-     property int nPrice
-     property int nDate
-     property int nType
 
      function __db()
      {
-         return LocalStorage.openDatabaseSync("CooreDB", "0.1", "The Local Coore Bank", 1000);
+         return LocalStorage.openDatabaseSync("Coore", "1.0", "The Local Coore Bank", 1000);
      }
      function __ensureTables(tx)
      {
-         tx.executeSql('CREATE TABLE IF NOT EXISTS favorites(location TEXT)', []);
+         tx.executeSql('CREATE TABLE IF NOT EXISTS favorites(location TEXT, location_id INTEGER)', []);
      }
 
      function fillModel() {
          __db().transaction(
              function(tx) {
                  __ensureTables(tx);
-                 var rs = tx.executeSql("SELECT location FROM favorites ORDER BY location DESC", []);
+                 var rs = tx.executeSql("SELECT location, location_id FROM favorites ORDER BY location DESC", []);
                  model.clear();
                  if (rs.rows.length > 0) {
                      for (var i=0; i<rs.rows.length; ++i) {
-                         model.append(rs.rows.item(i))
+                         var row = rs.rows.item(i);
+                         model.append({"name":row.location,"id":row.location_id})
                      }
                  }
              }
          )
      }
 
-     function addItem(location) {
+     function addItem(location, location_id) {
               __db().transaction(
                   function(tx) {
                       __ensureTables(tx);
-                      tx.executeSql("INSERT INTO favorites VALUES(?)", [location]);
+                      tx.executeSql("INSERT INTO favorites VALUES(?, ?)", [location, location_id]);
                       fillModel();
                   }
               )
