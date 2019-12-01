@@ -13,7 +13,7 @@ Version:    0.7
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://example.org/
+URL:        https://bauid.ch/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-coore.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9

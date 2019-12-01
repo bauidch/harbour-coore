@@ -10,13 +10,49 @@ Page {
     property string noData: "False"
     property string locationID
     property variant menus
+    property variant locationInfos
+
+    Column {
+        id: headerContainer
+        width: oneLocation.width
+
+        PageHeader {
+            title: oneLocation.locationTitle
+        }
+        Label {
+            id: locationAdress
+            color: Theme.secondaryHighlightColor
+            x: Theme.paddingLarge
+            font.pixelSize: Theme.fontSizeMedium
+            wrapMode: Text.Wrap
+            anchors {
+                right: headerContainer.right
+                rightMargin: 40
+            }
+        }
+
+        Row {
+            spacing: Theme.paddingLarge
+            anchors.horizontalCenter: parent.horizontalCenter
+            Label {
+                x: Theme.paddingLarge
+                id: dayLabel
+                text: qsTr("Today")
+                wrapMode: Text.Wrap
+                color: Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeLarge
+            }
+        }
+    }
 
         SilicaListView {
              id: listView
              anchors.fill: parent
-             header: PageHeader {
-                 id: titleLabel
-                 title: oneLocation.locationTitle
+             header: Item {
+                 id: header
+                 width: headerContainer.width
+                 height: headerContainer.height
+                 Component.onCompleted: headerContainer.parent = header
              }
              PullDownMenu {
                  MenuItem {
@@ -56,11 +92,19 @@ Page {
              }
 
         }
+
         Component.onCompleted: {
             oneLocation.menus =  Locations.get_all_menus(oneLocation.locationID)
+            if (oneLocation.menus.length === 0){
+                oneLocation.noData = "True"
+            }
             for (var i=0; i<oneLocation.menus.length; i++) {
                 listModel.append({"title": oneLocation.menus[i].title, "price": oneLocation.menus[i].price});
             }
 
+            oneLocation.locationInfos =  Locations.get_one_location(oneLocation.locationID)
+            locationAdress.text = oneLocation.locationInfos[0].zip +" "+ oneLocation.locationInfos[0].city
+
         }
+
 }

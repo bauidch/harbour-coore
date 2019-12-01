@@ -76,6 +76,10 @@
         <source>no connection or no menu available</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Today</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MenuPage</name>

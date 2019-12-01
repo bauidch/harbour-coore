@@ -67,7 +67,6 @@ Page {
                 id: backgroundItem
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl('LocationPage.qml'), {locationTitle: model.name, locationID: model.id})
-                    console.log(model.id +" - "+ model.name)
                 }
 
                 ListView.onAdd: AddAnimation {
@@ -116,6 +115,7 @@ Page {
             for (var index = 0; index < filteredCountries.length; index++) {
                 if (index < count) {
                     setProperty(index, "name", filteredCountries[index].name)
+                    setProperty(index, "id", filteredCountries[index].id)
                 } else {
                     append({ "name": filteredCountries[index].name, "id": filteredCountries[index].id})
                 }

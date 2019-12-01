@@ -24,13 +24,6 @@ Page {
             PageHeader {
                 title: oneFood.locationTitle
             }
-            Label {
-                x: Theme.paddingLarge
-                id: locationAdress
-                wrapMode: Text.Wrap
-                color: Theme.secondaryHighlightColor
-                font.pixelSize: Theme.fontSizeSmall
-            }
 
             Row {
                 id: titleMenu
@@ -69,7 +62,7 @@ Page {
                     }
            }
             Label {
-                   text: qsTr("Coop Restaurant ") + oneFood.locationTitle
+                   id: footerText
                    color: Theme.secondaryHighlightColor
                    x: Theme.paddingLarge
             }
@@ -78,6 +71,6 @@ Page {
     }
     Component.onCompleted: {
         oneFood.locationInfos =  Locations.get_one_location(oneFood.locationID)
-        locationAdress.text = oneFood.locationInfos[0].zip +" "+ oneFood.locationInfos[0].city
+        footerText.text =  qsTr("Coop Restaurant ") + oneFood.locationInfos[0].city
     }
 }

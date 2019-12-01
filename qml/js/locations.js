@@ -28,7 +28,7 @@ function get_all_locations() {
     } catch (e) {
         console.log("error: failed to parse json");
     }
-    if (locationsRAW.status >= 200 && locationsRAW.status < 400 && locations.results.length > 0) {
+    if (locationsRAW.status >= 200 && locationsRAW.status < 400) {
 
         var ret = [];
         for (var i = 0; i < locations.results.length; i++) {

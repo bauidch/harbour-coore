@@ -1,11 +1,8 @@
-## 0.7 (not released)
+## 0.7 (01.12.2019)
 
 ENHANCEMENTS:
-
-
-NEW FEATURES:
-
-
+* Rebuild App(use JavaScript instead of Python)
+* Use new API
 
 ## 0.6 (2016 - 2018)
 Removed from the Jolla Store
