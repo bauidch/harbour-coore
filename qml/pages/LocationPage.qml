@@ -1,8 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import io.thp.pyotherside 1.3
 import ".."
-
+import "../js/locations.js" as Locations
 Page {
     id: oneLocation
 
@@ -10,28 +9,52 @@ Page {
     property string loadingCircle
     property string noData: "False"
     property string locationID
+    property variant menus
+    property variant locationInfos
 
-    onStatusChanged: {
-      if (oneLocation.status == PageStatus.Active) {
-        oneLocation.oneMenu(oneLocation.locationID);
-      }
+    Column {
+        id: headerContainer
+        width: oneLocation.width
+        spacing: Theme.paddingSmall
+
+        PageHeader {
+            id: pageHeader
+            title: oneLocation.locationTitle
+        }
+        SectionHeader {
+            id: locationAdress
+            font.pixelSize: Theme.fontSizeMedium
+            color: Theme.secondaryHighlightColor
+            wrapMode: Text.Wrap
+        }
+
+        Row {
+            spacing: Theme.paddingLarge
+            anchors.horizontalCenter: parent.horizontalCenter
+            Label {
+                x: Theme.paddingLarge
+                id: dayLabel
+                text: qsTr("Today")
+                wrapMode: Text.Wrap
+                color: Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeLarge
+            }
+        }
     }
-
-    function oneMenu (location) {
-        python.call("getdata.allFood",[location], {})
-      }
 
         SilicaListView {
              id: listView
              anchors.fill: parent
-             header: PageHeader {
-                 id: titleLabel
-                 title: oneLocation.locationTitle
+             header: Item {
+                 id: header
+                 width: headerContainer.width
+                 height: headerContainer.height
+                 Component.onCompleted: headerContainer.parent = header
              }
              PullDownMenu {
                  MenuItem {
                      text: qsTr("Add to Favorites")
-                     onClicked: favoritesBank.addItem(oneLocation.locationTitle)
+                     onClicked: favoritesBank.addItem(oneLocation.locationTitle, oneLocation.locationID)
                  }
              }
 
@@ -43,31 +66,21 @@ Page {
                 id: delegate
 
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl('FoodPage.qml'), {foodTitle: model.title, locationTitle: oneLocation.locationTitle, foodPrice: model.price, locationID: oneLocation.locationID})
+                    pageStack.push(Qt.resolvedUrl('MenuPage.qml'), {foodTitle: model.title, locationTitle: oneLocation.locationTitle, foodPrice: model.price, locationID: oneLocation.locationID})
                 }
+
 
                 Label {
                     anchors.verticalCenter: parent.verticalCenter
                     id: menuLabel
-                    text: title
+                    text: model.title
                     color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeLarge
                     x: Theme.paddingLarge
                 }
 
-              }
-             ViewPlaceholder {
-                 id: loaderPlace
-                 enabled: oneLocation.loadingCircle != "gelodet"
 
-                 BusyIndicator {
-                     running: true
-                     size: BusyIndicatorSize.Large
-                     anchors {
-                          horizontalCenter: parent.horizontalCenter
-                     }
-                }
-             }
+              }
              ViewPlaceholder {
                  id: errorPlace
                  text: qsTr("No Menus")
@@ -77,47 +90,18 @@ Page {
 
         }
 
-
-
-        Python {
-            id: python
-
-            Component.onCompleted: {
-                addImportPath(Qt.resolvedUrl('.'));
-
-                setHandler('loadingCircle', function(newvalue) {
-                    oneLocation.loadingCircle = newvalue;
-
-                });
-                setHandler('setLocationID', function(newvalue) {
-                    oneLocation.locationID = newvalue;
-                });
-
-                importModule('getdata', function () {});
-                // Import the main module and load the data
-                                importModule('getdata', function () {
-                                    python.call('getdata.allFood', [oneLocation.locationID], function(result) {
-                                        // Load the received data into the list model
-                                        if (result.length <= 0) {
-                                            oneLocation.noData = "True";
-                                        }
-
-                                        for (var i=0; i<result.length; i++) {
-                                            listModel.append(result[i]);
-                                        }
-                                    });
-                                })
+        Component.onCompleted: {
+            oneLocation.menus =  Locations.get_all_menus(oneLocation.locationID)
+            if (oneLocation.menus.length === 0){
+                oneLocation.noData = "True"
+            }
+            for (var i=0; i<oneLocation.menus.length; i++) {
+                listModel.append({"title": oneLocation.menus[i].title, "price": oneLocation.menus[i].price});
             }
 
-
-            onError: {
-                console.log('python error: ' + traceback);
-            }
-
+            oneLocation.locationInfos =  Locations.get_one_location(oneLocation.locationID)
+            locationAdress.text = oneLocation.locationInfos[0].zip +" "+ oneLocation.locationInfos[0].city
 
         }
 
 }
-
-
-

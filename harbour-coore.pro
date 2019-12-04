@@ -16,15 +16,19 @@ CONFIG += sailfishapp
 
 SOURCES += src/harbour-coore.cpp
 
-OTHER_FILES += qml/harbour-coore.qml \
+DISTFILES += qml/harbour-coore.qml \
+    .gitignore \
+    qml/FavoritesBank.qml \
     qml/cover/CoverPage.qml \
+    qml/pages/AboutPage.qml \
     rpm/harbour-coore.changes.in \
+    rpm/harbour-coore.changes.run.in \
     rpm/harbour-coore.spec \
     rpm/harbour-coore.yaml \
     translations/*.ts \
     harbour-coore.desktop
 
-SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
+SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 
 # to disable building translations every time, comment out the
 # following CONFIG line
@@ -35,13 +39,3 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/harbour-coore-de.ts
-
-DISTFILES += \
-    qml/pages/LocationPage.qml \
-    qml/pages/SearchPage.qml \
-    qml/pages/FoodPage.qml \
-    qml/pages/AboutPage.qml \
-    qml/pages/getdata.py \
-    qml/pages/FavoritePage.qml \
-    qml/FavoritesBank.qml
-

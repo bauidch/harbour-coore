@@ -8,6 +8,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Coore version: 0.7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Author:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -35,10 +39,6 @@
         <source>All information is supplied without guarantee.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Coore version: 0.7</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CoverPage</name>
@@ -63,14 +63,11 @@
     </message>
 </context>
 <context>
-    <name>FoodPage</name>
+    <name>LocationPage</name>
     <message>
-        <source>Coop Restaurant </source>
+        <source>Add to Favorites</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>LocationPage</name>
     <message>
         <source>No Menus</source>
         <translation type="unfinished"></translation>
@@ -80,12 +77,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add to Favorites</source>
+        <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>SearchPage</name>
+    <name>MenuPage</name>
+    <message>
+        <source>Coop Restaurant </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchRestaurantPage</name>
     <message>
         <source>Location</source>
         <translation type="unfinished"></translation>
