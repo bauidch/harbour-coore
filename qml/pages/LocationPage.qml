@@ -15,20 +15,17 @@ Page {
     Column {
         id: headerContainer
         width: oneLocation.width
+        spacing: Theme.paddingSmall
 
         PageHeader {
+            id: pageHeader
             title: oneLocation.locationTitle
         }
-        Label {
+        SectionHeader {
             id: locationAdress
-            color: Theme.secondaryHighlightColor
-            x: Theme.paddingLarge
             font.pixelSize: Theme.fontSizeMedium
+            color: Theme.secondaryHighlightColor
             wrapMode: Text.Wrap
-            anchors {
-                right: headerContainer.right
-                rightMargin: 40
-            }
         }
 
         Row {
