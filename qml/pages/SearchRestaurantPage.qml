@@ -60,10 +60,14 @@ Page {
                     text: qsTr("Favorites")
                     onClicked: pageStack.push(Qt.resolvedUrl("FavoritePage.qml"))
                 }
+                MenuItem {
+                    text: qsTr("Maps")
+                    onClicked: pageStack.push(Qt.resolvedUrl("MapsPage.qml"))
+                }
             }
 
 
-            delegate: BackgroundItem {
+            delegate: LocationListItem {
                 id: backgroundItem
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl('LocationPage.qml'), {locationTitle: model.name, locationID: model.id})
@@ -75,14 +79,8 @@ Page {
                 ListView.onRemove: RemoveAnimation {
                     target: backgroundItem
                 }
-
-                Label {
-                    x: searchField.textLeftMargin
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: searchString.length > 0 ? (highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor)
-                                                   : (highlighted ? Theme.highlightColor : Theme.primaryColor)
-                    textFormat: Text.StyledText
-                    text: Theme.highlightText(model.name, searchString, Theme.highlightColor)
+                locationText: Theme.highlightText(model.name, searchString, Theme.highlightColor)
+                distanceText: "42m"
                 }
             }
 
@@ -101,7 +99,6 @@ Page {
         id: listModel
 
         property variant locations: Locations.get_all_locations()
-
 
         function update() {
 
