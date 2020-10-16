@@ -105,19 +105,19 @@ Page {
 
         function update() {
 
-            var filteredCountries = locations.filter(function (location) {
+            var filteredLocations = locations.filter(function (location) {
                 var locationname = location.name
                 return locationname.toLowerCase().indexOf(searchString) !== -1
             })
-            while (count > filteredCountries.length) {
-                remove(filteredCountries.length)
+            while (count > filteredLocations.length) {
+                remove(filteredLocations.length)
             }
-            for (var index = 0; index < filteredCountries.length; index++) {
+            for (var index = 0; index < filteredLocations.length; index++) {
                 if (index < count) {
-                    setProperty(index, "name", filteredCountries[index].name)
-                    setProperty(index, "id", filteredCountries[index].id)
+                    setProperty(index, "name", filteredLocations[index].name)
+                    setProperty(index, "id", filteredLocations[index].id)
                 } else {
-                    append({ "name": filteredCountries[index].name, "id": filteredCountries[index].id})
+                    append({ "name": filteredLocations[index].name, "id": filteredLocations[index].id})
                 }
             }
         }
