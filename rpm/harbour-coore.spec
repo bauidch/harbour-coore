@@ -9,7 +9,7 @@ Name:       harbour-coore
 # << macros
 
 Summary:    Coop Restaurant viewer
-Version:    0.7
+Version:    0.8
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE

@@ -25,26 +25,22 @@ Page {
                 title: oneFood.locationTitle
             }
 
+
+            Label {
+                x: Theme.paddingLarge
+                id: mainLabel
+                text: oneFood.foodTitle
+                wrapMode: Text.Wrap
+                color: Theme.secondaryHighlightColor
+                font.pixelSize: Theme.fontSizeExtraLarge
+            }
             Row {
-                id: titleMenu
-                spacing: Theme.paddingLarge
-                anchors.horizontalCenter: parent.horizontalCenter
+                x: Theme.paddingLarge
 
                 Label {
-                    x: Theme.paddingLarge
-                    id: mainLabel
-                    text: oneFood.foodTitle
-                    wrapMode: Text.Wrap
-                    color: Theme.secondaryHighlightColor
-                    font.pixelSize: Theme.fontSizeExtraLarge
-                }
-                Label {
-                    x: Theme.paddingLarge
-                    id: priceLabel
-                    text: oneFood.foodPrice
-                    wrapMode: Text.Wrap
-                    color: Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeExtraLarge
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.highlightColor
+                    text: oneFood.foodPrice + " Fr."
                 }
             }
 
@@ -55,7 +51,7 @@ Page {
                     Label {
                         text: modelData
                         color: Theme.primaryColor
-                        font.pixelSize: Theme.fontSizeMedium
+                        font.pixelSize: Theme.fontSizeSmall
                         wrapMode: Text.Wrap
                         width: parent.width
                         x: Theme.paddingLarge

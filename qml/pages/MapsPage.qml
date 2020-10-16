@@ -8,12 +8,10 @@ import "../js/locations.js" as Locations
 import ".."
 
 Page {
-
     id: mapPage
 
     property var model
     property var positionSource
-    //property alias name : mapPage.title
     property alias map : map
 
     PageHeader {
@@ -32,17 +30,10 @@ Page {
         z: 4
     }
 
-    ViewPlaceholder {
-        id: errorLocations
-        text: qsTr("No Locations")
-        hintText: qsTr("no connection or no locations available")
-        enabled: mapPage.model = 0
-    }
-
     property var currentPosition: MapQuickItem {
         id: currentPosition
 
-        coordinate: QtPositioning.coordinate(8, 47)
+        coordinate: QtPositioning.coordinate(47.317981, 7.803091)//positionSource.position.coordinate
 
         anchorPoint.x: currentPosImage.width / 2
         anchorPoint.y: currentPosImage.height / 2
@@ -103,33 +94,35 @@ Page {
                 anchorPoint.x: markerImage.width / 2
                 anchorPoint.y: markerImage.height
 
-                coordinate: QtPositioning.coordinate(model.latCoord, model.longCoord)
+                coordinate: QtPositioning.coordinate(mapItemView.coordinates)
 
                 sourceItem: IconButton {
                     id: markerImage
                     icon.scale: 1
-                    icon.source:  "image://theme/icon-m-location"
+                    icon.source: "image://theme/icon-m-location"
                     anchors.verticalCenter: parent.verticalCenter
 
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("LocationmapPage.qml"),
+                        pageStack.push(Qt.resolvedUrl("LocationPage.qml"),
                                        {
-                                           locationTitle: mapItemView.model.item(index),
+                                           locationTitle: mapItemView.model.name,
                                            locationID: mapItemView.model.id,
                                        });
                     }
                 }
             }
         }
+        onActiveMapTypeChanged: if (map.dirty) map.repopulateMap()
         Component.onCompleted: {
-            addMapItem(currentPosition);
             if (map.dirty) map.repopulateMap()
+            addMapItem(currentPosition);
             centerAndZoom()
+            loadLocations()
         }
 
         function centerAndZoom(){
             center = currentPosition.coordinate;
-            zoomLevel = maximumZoomLevel - (9);
+            zoomLevel = maximumZoomLevel - 12;//3
         }
 
         IconButton {
@@ -147,6 +140,16 @@ Page {
             icon.color: Theme.highlightBackgroundColor
             opacity: 0.75
             icon.source: "image://theme/icon-cover-location"
+        }
+        function loadLocations() {
+            mapPage.model = Locations.get_all_locations()
+            console.log(mapPage.model[0].name)
+            console.log(mapPage.model[0].id)
+            console.log(mapPage.model[0].coordinates)
+            var bla = mapPage.model[0].coordinates
+            var array = bla.split(',')
+            console.log(array[0])
+            console.log(array[1])
         }
     }
 }
