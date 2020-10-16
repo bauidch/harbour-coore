@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-
+import "../components"
 import "../js/locations.js" as Locations
 
 Page {
@@ -80,8 +80,7 @@ Page {
                     target: backgroundItem
                 }
                 locationText: Theme.highlightText(model.name, searchString, Theme.highlightColor)
-                distanceText: "42m"
-                }
+                addressText: model.address
             }
 
             VerticalScrollDecorator {}
@@ -113,8 +112,13 @@ Page {
                 if (index < count) {
                     setProperty(index, "name", filteredLocations[index].name)
                     setProperty(index, "id", filteredLocations[index].id)
+                    setProperty(index, "address", filteredLocations[index].zip +" "+filteredLocations[index].city)
                 } else {
-                    append({ "name": filteredLocations[index].name, "id": filteredLocations[index].id})
+                    append({
+                               "name": filteredLocations[index].name,
+                               "id": filteredLocations[index].id,
+                               "address": filteredLocations[index].zip +" "+filteredLocations[index].city
+                           })
                 }
             }
         }

@@ -1,21 +1,25 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import Sailfish.Silica 1.0
 import QtLocation 5.0
 import QtPositioning 5.0
 import QtGraphicalEffects 1.0
+import "../components"
+import "../js/locations.js" as Locations
+import ".."
+
 Page {
 
-    id: mapPAge
+    id: mapPage
 
     property var model
     property var positionSource
-    property alias name : page.title
+    //property alias name : mapPage.title
     property alias map : map
 
     PageHeader {
         id: header
         y: 0
-        title: name
+        title: "Maps"
         width: parent.width
         z: 5
     }
@@ -28,18 +32,26 @@ Page {
         z: 4
     }
 
+    ViewPlaceholder {
+        id: errorLocations
+        text: qsTr("No Locations")
+        hintText: qsTr("no connection or no locations available")
+        enabled: mapPage.model = 0
+    }
+
     property var currentPosition: MapQuickItem {
         id: currentPosition
 
-        coordinate: positionSource.position.coordinate
+        coordinate: QtPositioning.coordinate(8, 47)
 
         anchorPoint.x: currentPosImage.width / 2
         anchorPoint.y: currentPosImage.height / 2
 
         sourceItem: IconButton {
             id: currentPosImage
-            type: "cover-location"
-            color: Theme.ownLocationColor
+            icon.scale: 1
+            icon.source: "image://theme/icon-cover-location"
+            icon.color: Theme.ownLocationColor
         }
     }
 
@@ -54,8 +66,6 @@ Page {
         transparentBorder: true
         z: 3
     }
-
-    onActivated: if (map.dirty) map.repopulateMap()
 
     Map {
         id: map
@@ -73,7 +83,7 @@ Page {
         function repopulateMap() {
             // triggers a map repopulation
             mapItemView.model = 'undefined';
-            mapItemView.model = page.model;
+            mapItemView.model = mapPage.model;
             map.dirty = false;
         }
 
@@ -86,31 +96,57 @@ Page {
 
         MapItemView {
             id: mapItemView
-            model: page.model
+            model: mapPage.model
 
             delegate: MapQuickItem {
 
-                anchorPoint.x: MarkerImage.width / 2
-                anchorPoint.y: MarkerImage.height
+                anchorPoint.x: markerImage.width / 2
+                anchorPoint.y: markerImage.height
 
                 coordinate: QtPositioning.coordinate(model.latCoord, model.longCoord)
 
                 sourceItem: IconButton {
-                    id: MarkerImage
-                    type: "location"
-
-                    color:
-                    verticalAlignment: Text.AlignBottom
+                    id: markerImage
+                    icon.scale: 1
+                    icon.source:  "image://theme/icon-m-location"
+                    anchors.verticalCenter: parent.verticalCenter
 
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("LocationPage.qml"),
+                        pageStack.push(Qt.resolvedUrl("LocationmapPage.qml"),
                                        {
                                            locationTitle: mapItemView.model.item(index),
-                                           locationID: model.id,
+                                           locationID: mapItemView.model.id,
                                        });
                     }
                 }
             }
+        }
+        Component.onCompleted: {
+            addMapItem(currentPosition);
+            if (map.dirty) map.repopulateMap()
+            centerAndZoom()
+        }
+
+        function centerAndZoom(){
+            center = currentPosition.coordinate;
+            zoomLevel = maximumZoomLevel - (9);
+        }
+
+        IconButton {
+            // SFOS map has no 'userPositionAvailable'
+            enabled: positionSource.position.coordinate.isValid
+
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: Theme.paddingLarge
+            anchors.bottomMargin: Theme.paddingLarge
+
+            onClicked: map.centerAndZoom()
+
+            z: 6
+            icon.color: Theme.highlightBackgroundColor
+            opacity: 0.75
+            icon.source: "image://theme/icon-cover-location"
         }
     }
 }

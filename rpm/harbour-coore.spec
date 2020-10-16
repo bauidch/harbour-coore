@@ -17,10 +17,18 @@ URL:        https://bauid.ch/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-coore.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
+Requires:   qt5-qtpositioning
+Requires:   qt5-qtlocation
+Requires:   qt5-plugin-geoservices-osm
+Requires:   qt5-qtdeclarative-import-location
+Requires:   qt5-qtdeclarative-import-positioning
+Requires:   qt5-qtgraphicaleffects
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(Qt5Positioning)
+BuildRequires:  pkgconfig(Qt5Location)
 BuildRequires:  desktop-file-utils
 
 %description

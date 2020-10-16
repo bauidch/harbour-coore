@@ -12,11 +12,11 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Tue Oct 25 2016 bauidch <info@bauid.ch> 0.6-1
-- Favorites Option
-- More Locations
+#* Tue Oct 25 2016 bauidch <info@bauid.ch> 0.6-1
+#- Favorites Option
+#- More Locations
 
-* Sun Dez 01 2019 bauidch <info@bauid.ch> 0.7-1
-- Rebuild App(use JavaScript instead of Python)
-- Use new API
+#* Sun Dez 01 2019 bauidch <info@bauid.ch> 0.7-1
+#- Rebuild App(use JavaScript instead of Python)
+#- Use new API
 

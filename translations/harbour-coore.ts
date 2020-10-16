@@ -82,6 +82,17 @@
     </message>
 </context>
 <context>
+    <name>MapsPage</name>
+    <message>
+        <source>No Locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>no connection or no locations available</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MenuPage</name>
     <message>
         <source>Coop Restaurant </source>
@@ -100,6 +111,10 @@
     </message>
     <message>
         <source>Favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maps</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

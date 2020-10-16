@@ -22,7 +22,7 @@ Page {
             title: oneLocation.locationTitle
         }
         SectionHeader {
-            id: locationAdress
+            id: locationAddress
             font.pixelSize: Theme.fontSizeMedium
             color: Theme.secondaryHighlightColor
             wrapMode: Text.Wrap
@@ -100,7 +100,7 @@ Page {
             }
 
             oneLocation.locationInfos =  Locations.get_one_location(oneLocation.locationID)
-            locationAdress.text = oneLocation.locationInfos[0].zip +" "+ oneLocation.locationInfos[0].city
+            locationAddress.text = oneLocation.locationInfos[0].zip +" "+ oneLocation.locationInfos[0].city
 
         }
 
