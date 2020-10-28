@@ -17,7 +17,6 @@ CONFIG += sailfishapp
 SOURCES += src/harbour-coore.cpp
 
 DISTFILES += qml/harbour-coore.qml \
-    ../harbour-airmeteo/qml/js/client.js \
     .gitignore \
     qml/FavoritesBank.qml \
     qml/cover/CoverPage.qml \

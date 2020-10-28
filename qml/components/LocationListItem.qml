@@ -10,10 +10,7 @@ ListItem {
 
     Label {
         id: locationLabel
-        //color: Theme.secondaryColor
-
         width: Math.min(locationLabel.contentWidth,
-                        // space that is left after substracting all the other elements from the available width
                         delegate.width
                         - (locationLabel.anchors.leftMargin))
 

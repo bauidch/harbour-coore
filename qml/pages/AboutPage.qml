@@ -95,15 +95,6 @@ Page {
                     text: qsTr("All information is supplied without guarantee.")
                 }
             }
-            Row {
-                x: Theme.paddingLarge
-
-                Label {
-                    font.pixelSize: Theme.fontSizeSmall
-                    color: Theme.highlightColor
-                    text: qsTr("Source:")
-                }
-            }
         }
    }
    VerticalScrollDecorator { flickable: pageFlickable }
