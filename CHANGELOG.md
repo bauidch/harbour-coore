@@ -1,4 +1,9 @@
-## 0.7 (01.12.2019)
+## 0.7-2
+
+ENHANCEMENTS:
+* UI Improvements
+
+## 0.7-1 (01.12.2019)
 
 ENHANCEMENTS:
 * Rebuild App(use JavaScript instead of Python)
@@ -11,5 +16,5 @@ ENHANCEMENTS:
 *  More locations
 
 NEW FEATURES:
-
 *  favorite function
+

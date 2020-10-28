@@ -16,9 +16,6 @@ Coop Restaurants are only in Switzerland.
 ### Restaurant Data
 https://github.com/jeremystucki/coop
 
-### Map
-https://github.com/micuintus/harbour-Berlin-Vegan
-
 ## ToDo
 - Show Menus of Tomorrow
 - Release on the Jolla Store
