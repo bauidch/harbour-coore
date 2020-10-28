@@ -1,6 +1,6 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import Sailfish.Silica 1.0
-
+import "../components"
 import "../js/locations.js" as Locations
 
 Page {
@@ -63,7 +63,7 @@ Page {
             }
 
 
-            delegate: BackgroundItem {
+            delegate: LocationListItem {
                 id: backgroundItem
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl('LocationPage.qml'), {locationTitle: model.name, locationID: model.id})
@@ -75,15 +75,8 @@ Page {
                 ListView.onRemove: RemoveAnimation {
                     target: backgroundItem
                 }
-
-                Label {
-                    x: searchField.textLeftMargin
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: searchString.length > 0 ? (highlighted ? Theme.secondaryHighlightColor : Theme.secondaryColor)
-                                                   : (highlighted ? Theme.highlightColor : Theme.primaryColor)
-                    textFormat: Text.StyledText
-                    text: Theme.highlightText(model.name, searchString, Theme.highlightColor)
-                }
+                locationText: Theme.highlightText(model.name, searchString, Theme.highlightColor)
+                addressText: model.address
             }
 
             VerticalScrollDecorator {}
@@ -102,22 +95,26 @@ Page {
 
         property variant locations: Locations.get_all_locations()
 
-
         function update() {
 
-            var filteredCountries = locations.filter(function (location) {
+            var filteredLocations = locations.filter(function (location) {
                 var locationname = location.name
                 return locationname.toLowerCase().indexOf(searchString) !== -1
             })
-            while (count > filteredCountries.length) {
-                remove(filteredCountries.length)
+            while (count > filteredLocations.length) {
+                remove(filteredLocations.length)
             }
-            for (var index = 0; index < filteredCountries.length; index++) {
+            for (var index = 0; index < filteredLocations.length; index++) {
                 if (index < count) {
-                    setProperty(index, "name", filteredCountries[index].name)
-                    setProperty(index, "id", filteredCountries[index].id)
+                    setProperty(index, "name", filteredLocations[index].name)
+                    setProperty(index, "id", filteredLocations[index].id)
+                    setProperty(index, "address", filteredLocations[index].zip +" "+filteredLocations[index].city)
                 } else {
-                    append({ "name": filteredCountries[index].name, "id": filteredCountries[index].id})
+                    append({
+                               "name": filteredLocations[index].name,
+                               "id": filteredLocations[index].id,
+                               "address": filteredLocations[index].zip +" "+filteredLocations[index].city
+                           })
                 }
             }
         }
