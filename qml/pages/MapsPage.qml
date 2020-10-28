@@ -1,7 +1,7 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
 import QtLocation 5.0
-import QtPositioning 5.0
+import QtPositioning 5.2
 import QtGraphicalEffects 1.0
 import "../components"
 import "../js/locations.js" as Locations
@@ -17,7 +17,7 @@ Page {
     PageHeader {
         id: header
         y: 0
-        title: "Maps"
+        title: "Map"
         width: parent.width
         z: 5
     }
@@ -37,8 +37,12 @@ Page {
 
         anchorPoint.x: currentPosImage.width / 2
         anchorPoint.y: currentPosImage.height / 2
-
         sourceItem: IconButton {
+            onClicked: {
+                console.log(mapPage.model.length)
+                console.log(mapPage.model[1].name)
+            }
+
             id: currentPosImage
             icon.scale: 1
             icon.source: "image://theme/icon-cover-location"
@@ -57,6 +61,7 @@ Page {
         transparentBorder: true
         z: 3
     }
+    //onActivated: if (map.dirty) map.repopulateMap()
 
     Map {
         id: map
@@ -75,6 +80,7 @@ Page {
             // triggers a map repopulation
             mapItemView.model = 'undefined';
             mapItemView.model = mapPage.model;
+            console.log(mapPage.model[0].name)
             map.dirty = false;
         }
 
@@ -94,15 +100,17 @@ Page {
                 anchorPoint.x: markerImage.width / 2
                 anchorPoint.y: markerImage.height
 
-                coordinate: QtPositioning.coordinate(mapItemView.coordinates)
+                coordinate: QtPositioning.coordinate(model.longitude, model.longitude)
 
                 sourceItem: IconButton {
                     id: markerImage
                     icon.scale: 1
                     icon.source: "image://theme/icon-m-location"
-                    anchors.verticalCenter: parent.verticalCenter
+                    icon.color: blue
+                    //anchors.verticalCenter: parent.verticalCenter
 
                     onClicked: {
+                        console.log(mapItemView.model.name)
                         pageStack.push(Qt.resolvedUrl("LocationPage.qml"),
                                        {
                                            locationTitle: mapItemView.model.name,
@@ -112,17 +120,19 @@ Page {
                 }
             }
         }
-        onActiveMapTypeChanged: if (map.dirty) map.repopulateMap()
+        //onActiveMapTypeChanged: if (map.dirty) map.repopulateMap()
         Component.onCompleted: {
+            mapPage.model = Locations.get_all_locations()
             if (map.dirty) map.repopulateMap()
             addMapItem(currentPosition);
             centerAndZoom()
-            loadLocations()
+
         }
 
         function centerAndZoom(){
             center = currentPosition.coordinate;
-            zoomLevel = maximumZoomLevel - 12;//3
+            zoomLevel = maximumZoomLevel - 7;//3
+            mapPage.model = Locations.get_all_locations()
         }
 
         IconButton {
@@ -143,13 +153,6 @@ Page {
         }
         function loadLocations() {
             mapPage.model = Locations.get_all_locations()
-            console.log(mapPage.model[0].name)
-            console.log(mapPage.model[0].id)
-            console.log(mapPage.model[0].coordinates)
-            var bla = mapPage.model[0].coordinates
-            var array = bla.split(',')
-            console.log(array[0])
-            console.log(array[1])
         }
     }
 }

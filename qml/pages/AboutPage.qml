@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import Sailfish.Silica 1.0
 
 
@@ -95,10 +95,16 @@ Page {
                     text: qsTr("All information is supplied without guarantee.")
                 }
             }
+            Row {
+                x: Theme.paddingLarge
 
-
-
-}
-}
+                Label {
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.highlightColor
+                    text: qsTr("Source:")
+                }
+            }
+        }
+   }
    VerticalScrollDecorator { flickable: pageFlickable }
 }

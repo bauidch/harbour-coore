@@ -32,7 +32,8 @@ function get_all_locations() {
 
         var ret = [];
         for (var i = 0; i < locations.results.length; i++) {
-            ret.push({"name":locations.results[i].name, "id":locations.results[i].id, "zip":locations.results[i].address.zip, "city":locations.results[i].address.city, "coordinates":locations.results[i].coordinates.coordinates});
+            var cordi = locations.results[i].coordinates.coordinates
+            ret.push({"name":locations.results[i].name, "id":locations.results[i].id, "zip":locations.results[i].address.zip, "city":locations.results[i].address.city, "longitude":cordi[0], "latitude":cordi[1]});
         }
 
         return ret;
