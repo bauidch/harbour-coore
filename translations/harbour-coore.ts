@@ -87,6 +87,10 @@
         <source>Coop Restaurant </source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Price: </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchRestaurantPage</name>
@@ -100,10 +104,6 @@
     </message>
     <message>
         <source>Favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Maps</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

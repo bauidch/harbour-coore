@@ -19,6 +19,7 @@ SOURCES += src/harbour-coore.cpp
 DISTFILES += qml/harbour-coore.qml \
     .gitignore \
     qml/FavoritesBank.qml \
+    qml/components/MenuButton.qml \
     qml/cover/CoverPage.qml \
     qml/pages/AboutPage.qml \
     rpm/harbour-coore.changes.in \

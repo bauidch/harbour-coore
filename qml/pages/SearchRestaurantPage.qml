@@ -60,10 +60,6 @@ Page {
                     text: qsTr("Favorites")
                     onClicked: pageStack.push(Qt.resolvedUrl("FavoritePage.qml"))
                 }
-                MenuItem {
-                    text: qsTr("Maps")
-                    onClicked: pageStack.push(Qt.resolvedUrl("MapsPage.qml"))
-                }
             }
 
 

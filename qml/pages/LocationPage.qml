@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import ".."
+import "../components"
 import "../js/locations.js" as Locations
 Page {
     id: oneLocation
@@ -20,12 +21,20 @@ Page {
         PageHeader {
             id: pageHeader
             title: oneLocation.locationTitle
-        }
-        SectionHeader {
-            id: locationAddress
-            font.pixelSize: Theme.fontSizeMedium
-            color: Theme.secondaryHighlightColor
-            wrapMode: Text.Wrap
+            Label {
+                id: locationAddress
+                color: Theme.secondaryHighlightColor
+                anchors {
+                    right: parent.right
+                    rightMargin: Theme.horizontalPageMargin
+                    bottom: parent.bottom
+                    bottomMargin:  Theme.paddingSmall
+                }
+                font {
+                    pixelSize: Theme.fontSizeExtraSmall
+                    family: Theme.fontFamilyHeading
+                }
+            }
         }
 
         Row {
@@ -62,23 +71,14 @@ Page {
                 id: listModel
              }
 
-             delegate: BackgroundItem {
+             delegate: MenuButton {
                 id: delegate
+                text: model.title
+                price: model.price
 
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl('MenuPage.qml'), {foodTitle: model.title, locationTitle: oneLocation.locationTitle, foodPrice: model.price, locationID: oneLocation.locationID})
                 }
-
-
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    id: menuLabel
-                    text: model.title
-                    color: Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeLarge
-                    x: Theme.paddingLarge
-                }
-
 
               }
              ViewPlaceholder {
