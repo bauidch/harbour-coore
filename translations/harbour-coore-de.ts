@@ -29,7 +29,7 @@
     </message>
     <message>
         <source>Data:</source>
-        <translation">Daten:</translation>
+        <translation>Daten:</translation>
     </message>
     <message>
         <source>All Menus come from the Coop Website.</source>
@@ -59,7 +59,7 @@
     </message>
     <message>
         <source>No Entry</source>
-        <translation">Keine Eintäge</translation>
+        <translation>Keine Eintäge</translation>
     </message>
 </context>
 <context>
