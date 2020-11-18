@@ -10,7 +10,7 @@ Name:       harbour-coore
 
 Summary:    Coop Restaurant viewer
 Version:    0.7
-Release:    2
+Release:    3
 Group:      Qt/Qt
 License:    LICENSE
 URL:        https://bauid.ch/

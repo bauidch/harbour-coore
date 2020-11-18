@@ -1,3 +1,8 @@
+## 0.7-3
+
+SOLVED BUGS:
+* Fix german translations
+
 ## 0.7-2
 
 ENHANCEMENTS:
