@@ -9,8 +9,8 @@ Name:       harbour-coore
 # << macros
 
 Summary:    Coop Restaurant viewer
-Version:    0.7
-Release:    3
+Version:    0.8
+Release:    1
 Group:      Qt/Qt
 License:    LICENSE
 URL:        https://bauid.ch/

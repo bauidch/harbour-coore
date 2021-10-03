@@ -8,10 +8,6 @@
         <translation>Über</translation>
     </message>
     <message>
-        <source>Coore version: 0.7</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
@@ -38,6 +34,10 @@
     <message>
         <source>All information is supplied without guarantee.</source>
         <translation>Alle Angaben ohne Gewähr</translation>
+    </message>
+    <message>
+        <source>Coore version: 0.8</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

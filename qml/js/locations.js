@@ -1,3 +1,5 @@
+var api_base_url = "https://api-coop.svc.bauid.ch/v1"
+
 function httpGet(url) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, false);
@@ -6,7 +8,7 @@ function httpGet(url) {
 }
 
 function get_location_length() {
-    var locationsRAW = httpGet("https://themachine.jeremystucki.com/coop/api/v2/locations")
+    var locationsRAW = httpGet(api_base_url + "/locations")
 
     try {
         var locations = JSON.parse(locationsRAW.responseText);
@@ -21,7 +23,7 @@ function get_location_length() {
 }
 
 function get_all_locations() {
-    var locationsRAW = httpGet("https://themachine.jeremystucki.com/coop/api/v2/locations")
+    var locationsRAW = httpGet(api_base_url + "/locations")
 
     try {
         var locations = JSON.parse(locationsRAW.responseText);
@@ -33,7 +35,7 @@ function get_all_locations() {
         var ret = [];
         for (var i = 0; i < locations.results.length; i++) {
             var cordi = locations.results[i].coordinates.coordinates
-            ret.push({"name":locations.results[i].name, "id":locations.results[i].id, "zip":locations.results[i].address.zip, "city":locations.results[i].address.city, "longitude":cordi[0], "latitude":cordi[1]});
+            ret.push({"name":locations.results[i].name, "id":locations.results[i].id, "zip":locations.results[i].address.postcode, "city":locations.results[i].address.city, "longitude":cordi[0], "latitude":cordi[1]});
         }
 
         return ret;
@@ -44,7 +46,7 @@ function get_all_locations() {
 }
 
 function get_one_location(location_id) {
-    var locationsRAW = httpGet("https://themachine.jeremystucki.com/coop/api/v2/locations/" + location_id)
+    var locationsRAW = httpGet(api_base_url + "/locations/" + location_id)
 
     try {
         var location = JSON.parse(locationsRAW.responseText);
@@ -52,13 +54,13 @@ function get_one_location(location_id) {
         console.log("error: failed to parse json");
     }
     var ret = [];
-    ret.push({"name":location.name, "id":location.id, "zip":location.address.zip, "city":location.address.city});
+    ret.push({"name":location.name, "id":location.id, "zip":location.address.postcode, "city":location.address.city});
     return ret;
 
 }
 
 function get_all_menus(location_id) {
-    var menusRAW = httpGet("https://themachine.jeremystucki.com/coop/api/v2/locations/" + location_id + "/menus/today")
+    var menusRAW = httpGet(api_base_url + "/locations/" + location_id + "/menus/today")
     try {
         var menus = JSON.parse(menusRAW.responseText);
     } catch (e) {
@@ -76,7 +78,7 @@ function get_all_menus(location_id) {
 }
 
 function get_one_menu(location_id, menu) {
-     var menusRAW = httpGet("https://themachine.jeremystucki.com/coop/api/v2/locations/" + location_id + "/menus/today")
+     var menusRAW = httpGet(api_base_url + "/locations/" + location_id + "/menus/today")
 
     try {
         var menus = JSON.parse(menusRAW.responseText);

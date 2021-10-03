@@ -26,7 +26,7 @@ Page {
                  }
             }
             Label {
-                text: qsTr("Coore version: 0.7")
+                text: qsTr("Coore version: 0.8")
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeMedium
                 anchors {
